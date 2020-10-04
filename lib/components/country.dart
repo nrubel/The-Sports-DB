@@ -72,14 +72,16 @@ class _PageState extends State<CountryScreen> {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView.separated(
-                  itemBuilder: (BuildContext ctx, int index) {
-                    League _league = _leagues[index];
-                    return LeagueItem(league: _league);
-                  },
-                  separatorBuilder: (_, __) => SizedBox(height: 20),
-                  itemCount: _leagues.length,
-                ),
+                child: _leagues.length == 0
+                    ? Center(child: CircularProgressIndicator())
+                    : ListView.separated(
+                        itemBuilder: (BuildContext ctx, int index) {
+                          League _league = _leagues[index];
+                          return LeagueItem(league: _league);
+                        },
+                        separatorBuilder: (_, __) => SizedBox(height: 20),
+                        itemCount: _leagues.length,
+                      ),
               )
             ],
           ),
